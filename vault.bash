@@ -128,7 +128,7 @@ vault_exists() {
 
 symlink_extensions_to() {
   vault_name="$1"
-	echo -n "ln: "
+  echo -n "ln: "
   ln -vs "$PASSWORD_STORE_VAULT_DIR/.extensions" "$PASSWORD_STORE_VAULT_DIR/$vault_name/.extensions"
 }
 
@@ -136,11 +136,11 @@ activate_vault() {
   vault_name="$1"
   [[ -z "$vault_name" ]] && exit_err "$PROMPT_VAULT_NO_EMPTY_NAME"
   vault_dir="$PASSWORD_STORE_VAULT_DIR/$vault_name"
-	if [[ -a "$PASSWORD_STORE_DIR" ]]; then
-		[[ ! -L "$PASSWORD_STORE_DIR" ]] && exit_err "$PROMPT_VAULT_SYMLINK_NOT_SYMLINK"
-		rm "$PASSWORD_STORE_DIR"
-	fi
-	echo -n "ln: "
+  if [[ -a "$PASSWORD_STORE_DIR" ]]; then
+    [[ ! -L "$PASSWORD_STORE_DIR" ]] && exit_err "$PROMPT_VAULT_SYMLINK_NOT_SYMLINK"
+    rm "$PASSWORD_STORE_DIR"
+  fi
+  echo -n "ln: "
   ln -sfv "$vault_dir" "$PASSWORD_STORE_DIR"
 }
 
@@ -153,12 +153,12 @@ is_vault_active() {
 }
 
 rly_rly_delete_prompt() {
-	vault_name="$1"
-	echo "$PROMPT_DELETE_RLY"
-	echo -n "$PROMPT_DELETE_RLY_RLY" "$vault_name" "[y|N]"
-	read -n 1 rly_delete
-	echo
-	[[ "$rly_delete" == "y" ]] || [[ $rly_delete == "Y" ]]
+  vault_name="$1"
+  echo "$PROMPT_DELETE_RLY"
+  echo -n "$PROMPT_DELETE_RLY_RLY" "$vault_name" "[y|N]"
+  read -n 1 rly_delete
+  echo
+  [[ "$rly_delete" == "y" ]] || [[ $rly_delete == "Y" ]]
 }
 
 ######################
@@ -171,15 +171,15 @@ cmd_init() {
   mkdir -v "$PASSWORD_STORE_VAULT_DIR"
   extensions_dir="$PASSWORD_STORE_DIR/.extensions"
   if stat "$extensions_dir" &>/dev/null; then
-		echo -n "mv: "
+    echo -n "mv: "
     mv -v "$extensions_dir" "$PASSWORD_STORE_VAULT_DIR/"
   fi
 
-	echo -n "mv: "
+  echo -n "mv: "
   mv -v "$PASSWORD_STORE_DIR" "$PASSWORD_STORE_VAULT_DIR/main"
   symlink_extensions_to main
   activate_vault main
-	echo "$PROMPT_VAULT_CREATED"
+  echo "$PROMPT_VAULT_CREATED"
 }
 
 cmd_add() {
@@ -222,19 +222,19 @@ cmd_mv() {
   ([[ -z "$old_name" ]] || [[ -z "$new_name" ]]) && exit_err "$PROMPT_MV_ARG_MISSING"
   src_dir="$PASSWORD_STORE_VAULT_DIR/$old_name"
   dest_dir="$PASSWORD_STORE_VAULT_DIR/$new_name"
-	echo -n "mv: "
-	mv -v "$src_dir" "$dest_dir"
-	activate_vault "$new_name"
+  echo -n "mv: "
+  mv -v "$src_dir" "$dest_dir"
+  activate_vault "$new_name"
 }
 
 cmd_rm() {
-	vault_name="$1"
-	[[ -z "$vault_name" ]] && exit_err "$PROMPT_VAULT_NO_EMPTY_NAME"
-	vault_dir="$PASSWORD_STORE_VAULT_DIR/$vault_name"
-	is_vault_active "$vault_dir" && exit_err "$PROMPT_DELETE_ACTIVE"
-	[[ ! -d "$vault_dir" ]] && exit_err "$PROMPT_VAULT_EXISTS_NOT" "$vault_name"
-	rly_rly_delete_prompt "$vault_name" || exit_ok "Aborting."
-	rm -rfv "$vault_dir"
+  vault_name="$1"
+  [[ -z "$vault_name" ]] && exit_err "$PROMPT_VAULT_NO_EMPTY_NAME"
+  vault_dir="$PASSWORD_STORE_VAULT_DIR/$vault_name"
+  is_vault_active "$vault_dir" && exit_err "$PROMPT_DELETE_ACTIVE"
+  [[ ! -d "$vault_dir" ]] && exit_err "$PROMPT_VAULT_EXISTS_NOT" "$vault_name"
+  rly_rly_delete_prompt "$vault_name" || exit_ok "Aborting."
+  rm -rfv "$vault_dir"
 }
 
 ###################
@@ -245,8 +245,8 @@ sub_command="$1"; shift
 case "$sub_command" in
   i|init) cmd_init "$@";;
   a|add) cmd_add "$@";;
-	m|mv|move) cmd_mv "$@";;
-	r|d|rm|remove|del|delete) cmd_rm "$@";;
+  m|mv|move) cmd_mv "$@";;
+  r|d|rm|remove|del|delete) cmd_rm "$@";;
   ''|l|list) cmd_list "$@";;
   h|help)
     echo "$PROMPT_VERSION"
