@@ -1,4 +1,4 @@
-# Password-Store: VAULTS
+# pass-vaults
 
 An extension for the standard unix password manager:
 [Password-Store](https://git.zx2c4.com/password-store)
