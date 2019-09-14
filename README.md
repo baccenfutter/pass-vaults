@@ -29,8 +29,8 @@ additional stores, maintain them and switch back and forth between them.
 ```bash
 # The included Makefile will install the extension into the password
 # store of the current user.
-git clone https://github.com/baccenfutter/password-store-vaults
-cd password-store-vaults
+git clone https://github.com/baccenfutter/pass-vaults
+cd pass-vaults
 make install
 
 # Extensions are only executed if the evironment variable
