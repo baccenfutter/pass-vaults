@@ -3,14 +3,6 @@
 An extension for the standard unix password manager:
 [Password-Store](https://git.zx2c4.com/password-store)
 
-This extension adds support for maintaining multiple separate password stores
-under the same account.
-It moves the location of the stores to sub-directories under ~/.password-vaults
-and replaces ~/.password-store with a symbolic link pointing to the currently
-active password store.
-Several sub-commands are included, that allow the user to easily create
-additional stores, maintain them and switch back and forth between them.
-
 ## Features
 
 - support for managing multiple separate password-stores, called vaults
