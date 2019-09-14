@@ -48,10 +48,16 @@ PROMPT_USAGE="Usage:
         Switch to the VAULT with the given name.
     pass vault [list]
         List all available VAULTS.
-    pass vault init
-        Initialize a new VAULT.
     pass vault add <name>
         Add a new VAULT with the given name.
+    pass vault mv <name> <new-name>
+        Moves (renames) the given VAULT to <new-name>
+    pass vault rm <name>
+        Deletes the given VAULT and all its contents.
+        Note: it is NOT possible to delete the currenty activ VAULT.
+              Please always switch to or add another VAULT, first.
+    pass vault init
+        Initialize the VAULTS extension.
     pass vault help
         Display usage information.
     pass vault version
