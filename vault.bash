@@ -4,48 +4,6 @@
 # Author: Brian Wiborg <brian.wiborg@bihealth.org>
 # Date: 2019-09-12
 # License: GNU/GPL-2.0
-#
-#
-# Features
-# ========
-# 
-# - support for managing multiple separate password-stores, called vaults.
-# - vaults exist in distinct sub-directories of `~/.password-vaults/`.
-# - the currently active vault is symlinked to `~/.password_store/`.
-# - when activating another vault, the new vault is symlinked to
-#   `~/.password-store`.
-# - vaults can easily be created, renamed and destroyed
-# - extensions are moved to `~/.password-vaults/.extensions` and then
-#   automatically symlinked to all newly created vaults.
-#
-#
-# Usage
-# =====
-# 
-# - Type: `pass vault help` to view the usage information.
-#
-#
-# Dependencies
-# ============
-#
-# - pass-1.7.x (or later)
-#
-#
-# Installation
-# ============
-#
-# Type: make install
-#
-# or install it manually:
-#
-# ```
-# mkdir ~/.password-store/.extensions
-# cp vault.bash ~/.password-store/.extensions/
-# chmod +x ~/.password-store/.extensions/vault.bash
-# export PASSWORD_STORE_ENABLE_EXTENSIONS=true
-# echo 'export PASSWORD_STORE_ENABLE_EXTENSIONS=true' >> ~/.bashrc
-# ```
-#
 
 #####################
 ### CONFIGURATION ###
